@@ -11,6 +11,7 @@ Automation testing for Keycloak login using Playwright with Page Object Model pa
 - **CI/CD Pipeline** with GitHub Actions
 - **Scheduled Tests** every Tuesday 7AM and Friday 12PM UTC
 - **Environment Configuration** with `.env` support
+- **MCP Integration** with Playwright MCP Server
 
 ## 📁 Project Structure
 
@@ -28,6 +29,8 @@ keycloak-automation-testing/
 │   └── testHelpers.js            # Utility functions
 ├── .env.example                  # Environment variables template
 ├── .gitignore                   # Git ignore rules
+├── mcp-config.json              # MCP server configuration
+├── mcp-server.json             # MCP server config (alternative)
 ├── package.json                  # Dependencies and scripts
 ├── playwright.config.js          # Playwright configuration
 └── README.md                     # This file
@@ -38,6 +41,7 @@ keycloak-automation-testing/
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn
+- VS Code (recommended for MCP integration)
 
 ### Setup Steps
 
@@ -59,24 +63,44 @@ cp .env.example .env
 nano .env  # or use your preferred editor
 ```
 
-### Environment Configuration
+### MCP Server Setup
 
-Create a `.env` file based on `.env.example`:
+The project includes MCP (Model Context Protocol) server configuration for enhanced IDE integration:
 
+#### 1. Install MCP Packages
 ```bash
-# Copy the template
-cp .env.example .env
-
-# Edit with your configuration
-# Keycloak credentials
-KEYCLOAK_USERNAME=your_username
-KEYCLOAK_PASSWORD=your_password
-KEYCLOAK_URL=your_keycloak_url
-
-# Application settings
-BASE_URL=http://localhost:3000
-APP_URL=http://localhost:3000
+# MCP packages are already installed
+npm list | grep mcp
 ```
+
+#### 2. VS Code Configuration
+Add the following to your VS Code settings (`settings.json`):
+
+```json
+{
+  "mcp.servers": [
+    {
+      "name": "playwright",
+      "command": "npx",
+      "args": ["playwright-mcp-server"],
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "true",
+        "PLAYWRIGHT_BROWSER": "chromium"
+      }
+    },
+    {
+      "name": "filesystem",
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/Users/obo/Desktop/keycloak-automation-testing"]
+    }
+  ]
+}
+```
+
+#### 3. Available MCP Tools
+- **Playwright MCP Server**: Browser automation capabilities
+- **Filesystem MCP**: Project file access
+- **Inspector MCP**: Debug and monitoring tools
 
 ## 🧪 Running Tests
 
@@ -108,7 +132,7 @@ npm run test:timeout
 
 ```bash
 # Development (default)
-npm run test
+npm test
 
 # Production environment
 NODE_ENV=production npm test
@@ -131,6 +155,21 @@ npm run allure:open
 
 # Clean Allure results
 npm run allure:clean
+```
+
+### MCP-Enhanced Testing
+
+With MCP integration, you can:
+
+```bash
+# Use MCP to interact with tests
+npx playwright-mcp-server
+
+# Access filesystem via MCP
+npx @modelcontextprotocol/server-filesystem /path/to/project
+
+# Inspect MCP connections
+mcp-inspector
 ```
 
 ## 📊 CI/CD Pipeline
@@ -156,6 +195,7 @@ Tests run across multiple browsers:
 - **Allure Reports** - Detailed test reports with history
 - **Test Results** - JSON results and screenshots
 - **Video Recordings** - Test execution videos on failure
+- **MCP Logs** - MCP server interaction logs
 
 ## 🧪 Test Cases
 
@@ -215,6 +255,11 @@ DEBUG_MODE=false
 ALLURE_RESULTS_DIR=allure-results
 ALLURE_REPORT_DIR=allure-report
 PLAYWRIGHT_REPORT_DIR=playwright-report
+
+# MCP Configuration
+PLAYWRIGHT_HEADLESS=true
+PLAYWRIGHT_BROWSER=chromium
+MCP_FILESYSTEM_PATH=/Users/obo/Desktop/keycloak-automation-testing
 ```
 
 #### Environment-Specific Overrides
@@ -225,6 +270,48 @@ PROD_KEYCLOAK_PASSWORD=prod_password
 
 # Staging overrides
 STAGING_KEYCLOAK_URL=staging_keycloak_url
+```
+
+### MCP Configuration
+
+The project includes MCP server configuration files:
+
+#### mcp-config.json
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["playwright-mcp-server"],
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "true",
+        "PLAYWRIGHT_BROWSER": "chromium"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/Users/obo/Desktop/keycloak-automation-testing"]
+    },
+    "inspector": {
+      "command": "mcp-inspector"
+    }
+  }
+}
+```
+
+#### mcp-server.json (Alternative)
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["playwright-mcp-server"],
+      "env": {
+        "PLAYWRIGHT_HEADLESS": "true"
+      }
+    }
+  }
+}
 ```
 
 ### Playwright Configuration
@@ -245,6 +332,7 @@ STAGING_KEYCLOAK_URL=staging_keycloak_url
 - **Timeline**: Performance metrics and timing
 - **Categories**: Group tests by functionality
 - **Environment Info**: Browser and system details
+- **MCP Integration**: MCP server status and interactions
 
 ## 🚀 Deployment
 
@@ -305,6 +393,21 @@ await keycloakPage.login(username, password);
 await keycloakPage.verifySuccessfulLogin();
 ```
 
+### MCP-Enhanced Development
+
+With MCP integration, you can:
+
+```bash
+# Start MCP server
+npx playwright-mcp-server
+
+# Access project files via MCP
+npx @modelcontextprotocol/server-filesystem ./tests
+
+# Inspect MCP connections
+mcp-inspector
+```
+
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -314,6 +417,7 @@ await keycloakPage.verifySuccessfulLogin();
 3. **Allure Issues**: Ensure `allure-commandline` is installed globally
 4. **CI Failures**: Check GitHub Actions logs and artifacts
 5. **Environment Variables**: Verify `.env` file is properly configured
+6. **MCP Issues**: Check MCP server configuration and VS Code settings
 
 ### Debug Mode
 
@@ -326,6 +430,9 @@ npm run test:ui
 
 # Run with visible browser for debugging
 npm run test:headed
+
+# Debug MCP server
+npx playwright-mcp-server --debug
 ```
 
 ### Environment Issues
@@ -340,6 +447,25 @@ npm test
 
 # Verify environment variables are loaded
 npm run test:env
+
+# Check MCP server status
+mcp-inspector
+```
+
+### MCP Troubleshooting
+
+```bash
+# Check MCP packages
+npm list | grep mcp
+
+# Test MCP server
+npx playwright-mcp-server --help
+
+# Verify MCP configuration
+cat mcp-config.json
+
+# Check VS Code MCP integration
+# Open Command Palette (Ctrl+Shift+P) and search for "MCP"
 ```
 
 ## 📞 Support
@@ -349,6 +475,7 @@ For issues and questions:
 - Review test artifacts
 - Consult Allure reports
 - Review workflow logs
+- Check MCP server documentation
 
 ## 📄 License
 
@@ -372,6 +499,7 @@ The CI/CD pipeline automatically:
 - Generates Allure reports
 - Uploads artifacts
 - Deploys to GitHub Pages
+- Integrates MCP server for enhanced debugging
 
 ### Monitoring
 
@@ -379,3 +507,25 @@ The CI/CD pipeline automatically:
 - **Allure Reports**: Analyze test results
 - **Artifacts**: Download detailed reports
 - **GitHub Pages**: View historical reports
+- **MCP Inspector**: Debug MCP server interactions
+
+## 🔧 MCP Integration Benefits
+
+### Enhanced Development Experience
+- **Direct Test Execution**: Run tests from IDE
+- **File Access**: Navigate project files via MCP
+- **Debug Support**: Integrated debugging capabilities
+- **Automation**: Streamlined test workflow
+
+### IDE Integration
+- **VS Code Support**: Native MCP integration
+- **Command Palette**: Quick access to MCP tools
+- **Real-time Feedback**: Immediate test results
+- **Context Awareness**: Project-aware assistance
+
+### Advanced Features
+- **Browser Control**: MCP-driven browser automation
+- **Browser Control**: MCP-driven browser automation
+- **Test Management**: Organize and run tests via MCP
+- **Report Generation**: Automated report creation
+- **Error Analysis**: Enhanced error diagnostics

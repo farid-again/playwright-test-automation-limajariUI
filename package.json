@@ -28,8 +28,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@modelcontextprotocol/inspector": "^0.17.2",
+    "@modelcontextprotocol/server-filesystem": "^2025.8.21",
     "@playwright/test": "^1.56.1",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "playwright-mcp-server": "^1.0.0"
   },
   "devDependencies": {
     "allure-commandline": "^2.34.1",
