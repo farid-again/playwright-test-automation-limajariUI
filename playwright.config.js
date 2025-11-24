@@ -16,6 +16,7 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
+  // test doang
   projects: [
     {
       name: 'chromium',
