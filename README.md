@@ -1,211 +1,223 @@
 # Keycloak Login Automation Testing
 
-This project provides automated testing for Keycloak login functionality using Playwright with the Page Object Model (POM) pattern.
+Automation testing for Keycloak login using Playwright with Page Object Model pattern.
 
-## 📋 Project Overview
+## 🚀 Features
 
-- **Framework**: Playwright
-- **Language**: JavaScript
-- **Pattern**: Page Object Model (POM)
-- **Target**: Keycloak Authentication System
-- **Test Type**: End-to-End (E2E) Authentication Testing
+- **Page Object Model (POM)** pattern for maintainable test code
+- **4 Positive Test Cases** covering complete login scenarios
+- **Cross-browser Support** (Chromium, Firefox, WebKit)
+- **Allure Reporting** with detailed test reports
+- **CI/CD Pipeline** with GitHub Actions
+- **Scheduled Tests** every Tuesday 7AM and Friday 12PM UTC
 
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
-├── playwright.config.js          # Playwright configuration
-├── package.json                  # Project dependencies and scripts
-├── README.md                     # Project documentation
+keycloak-automation-testing/
+├── .github/workflows/
+│   └── ci.yml                     # GitHub Actions workflow
 ├── tests/
 │   ├── fixtures/
-│   │   └── testFixtures.js       # Test fixtures and test data
+│   │   └── testFixtures.js       # Test fixtures and data
 │   ├── pages/
-│   │   └── KeycloakLoginPage.js  # Page Object for Keycloak login
-│   └── keycloak-login-positive.spec.js  # Positive login test cases
-└── utils/
-    └── testHelpers.js            # Utility functions for testing
+│   │   └── KeycloakLoginPage.js  # Page Object for Keycloak
+│   └── keycloak-login-positive.spec.js  # Test cases
+├── utils/
+│   └── testHelpers.js            # Utility functions
+├── package.json                  # Dependencies and scripts
+├── playwright.config.js          # Playwright configuration
+└── README.md                     # This file
 ```
 
-## 🚀 Setup Instructions
+## 🛠️ Installation
 
-### Prerequisites
+```bash
+# Clone the repository
+git clone <repository-url>
+cd keycloak-automation-testing
 
-- Node.js (v14 or higher)
-- npm or yarn
+# Install dependencies
+npm install
 
-### Installation
-
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Install Playwright browsers**:
-   ```bash
-   npm run install:browsers
-   ```
+# Install Playwright browsers
+npm run install:browsers
+```
 
 ## 🧪 Running Tests
 
-### Available Test Commands
+### Local Testing
 
-- **Run all tests**:
-  ```bash
-  npm test
-  ```
-
-- **Run tests in headed mode (visible browser)**:
-  ```bash
-  npm run test:headed
-  ```
-
-- **Run tests with UI mode**:
-  ```bash
-  npm run test:ui
-  ```
-
-- **Debug tests**:
-  ```bash
-  npm run test:debug
-  ```
-
-- **Run specific browser tests**:
-  ```bash
-  npm run test:chromium
-  npm run test:firefox
-  npm run test:webkit
-  ```
-
-- **View test report**:
-  ```bash
-  npm run test:report
-  ```
-
-## 📝 Test Cases
-
-### Positive Flow Tests
-
-1. **TC001 - Successful login with valid credentials**
-   - Tests complete login flow with valid username/password
-   - Verifies successful authentication and redirect
-
-2. **TC002 - Verify login page accessibility and elements**
-   - Validates all form elements are present and visible
-   - Checks page accessibility and form field attributes
-
-3. **TC003 - Login flow with form validation**
-   - Tests form clearing, refilling, and submission
-   - Validates form interaction behaviors
-
-4. **TC004 - Complete end-to-end authentication flow**
-   - Uses authenticated fixture for pre-authenticated testing
-   - Verifies session persistence and page accessibility
-
-## 🔧 Configuration
-
-### Test Data
-
-Valid credentials are configured in `tests/fixtures/testFixtures.js`:
-- **Username**: `devonebyone`
-- **Password**: `Qq121212`
-- **Auth URL**: Keycloak development environment
-
-### Browser Support
-
-- Chromium (Chrome-based)
-- Firefox
-- WebKit (Safari-based)
-
-## 📊 Reports
-
-Test results are generated in:
-- **HTML Report**: `playwright-report/index.html`
-- **Screenshots**: `tests/screenshots/` (on failure)
-- **Videos**: `test-results/` (on failure)
-- **Traces**: `test-results/` (on retry)
-
-## 🛠️ Page Object Model
-
-### KeycloakLoginPage
-
-Located in `tests/pages/KeycloakLoginPage.js`, provides methods for:
-- Navigation to login page
-- Form interaction (username, password, login button)
-- Login verification and error handling
-- Session management
-
-### Key Methods
-
-- `navigateToLogin(authUrl)` - Navigate to Keycloak auth page
-- `login(username, password)` - Complete login process
-- `verifyLoginPageLoaded()` - Verify page is ready
-- `verifySuccessfulLogin()` - Check authentication success
-
-## 🔍 Debugging
-
-### Debug Mode
 ```bash
-npm run test:debug
-```
+# Run all tests
+npm test
 
-### Headed Mode (Visible Browser)
-```bash
+# Run specific browser
+npm run test:chromium
+npm run test:firefox
+npm run test:webkit
+
+# Run with visible browser
 npm run test:headed
-```
 
-### UI Mode (Interactive Testing)
-```bash
+# Run in debug mode
+npm run test:debug
+
+# Run with UI mode
 npm run test:ui
 ```
 
-## 📝 Adding New Tests
+### Allure Reporting
 
-1. Create new test file in `tests/` directory
-2. Use the test fixtures from `tests/fixtures/testFixtures.js`
-3. Import and use Page Objects from `tests/pages/`
-4. Follow the existing test structure and naming conventions
+```bash
+# Run tests with Allure reporter
+npm run test:allure
 
-### Example Test Structure
+# Generate Allure report
+npm run allure:generate
+
+# Open Allure report
+npm run allure:open
+```
+
+## 📊 CI/CD Pipeline
+
+### GitHub Actions Schedule
+
+The automation tests are configured to run automatically:
+
+- **Every Tuesday at 7:00 AM UTC** (2:00 PM WIB)
+- **Every Friday at 12:00 PM UTC** (7:00 PM WIB)
+- **Manual trigger** available via GitHub Actions UI
+- **Push/PR triggers** for main and develop branches
+
+### Test Matrix
+
+Tests run across multiple browsers:
+- **Chromium** (Desktop Chrome)
+- **Firefox** (Desktop Firefox)
+- **WebKit** (Desktop Safari)
+
+### Artifacts
+
+- **Allure Reports** - Detailed test reports with history
+- **Test Results** - JSON results and screenshots
+- **Video Recordings** - Test execution videos on failure
+
+## 🧪 Test Cases
+
+### TC001 - Successful Login with Valid Credentials
+✅ Verifies complete authentication flow
+- Navigate to Keycloak login page
+- Fill valid credentials (username: `devonebyone`, password: `Qq121212`)
+- Submit login form
+- Verify successful redirect to `http://localhost:3000`
+
+### TC002 - Verify Login Page Accessibility and Elements
+✅ Tests page structure and form elements
+- Verify page loads correctly
+- Check all form elements are visible and enabled
+- Validate form field accessibility
+
+### TC003 - Login Flow with Form Validation
+✅ Tests form interaction and validation
+- Clear and refill form fields
+- Submit login with correct credentials
+- Verify login progression
+
+### TC004 - Complete End-to-End Authentication Flow
+✅ Uses authenticatedPage fixture for pre-authenticated session
+- Verifies authenticated session state
+- Tests post-login page accessibility
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# Test Credentials
+KEYCLOAK_USERNAME=devonebyone
+KEYCLOAK_PASSWORD=Qq121212
+KEYCLOAK_URL=https://keycloak-dev.logistical.one/realms/lq/protocol/openid-connect/auth?client_id=loglines-fe&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F%23%2Flogin%3F&state=66f1cf3b-ee9f-41da-a5a1-8f2423bbbdb2&response_mode=fragment&response_type=code&scope=openid&nonce=baca162c-a37e-4573-8ed9-49a37503f2c1&code_challenge=q5Z1up1GgLRkmIqcjHRSreZgdURHQ72I2ti_k5pyQhI&code_challenge_method=S256
+```
+
+### Playwright Configuration
+
+- **Test Directory**: `./tests`
+- **Parallel Execution**: Enabled
+- **Retries**: 2 (CI), 0 (local)
+- **Reporters**: HTML, JSON, Allure
+- **Screenshots**: On failure
+- **Video**: On failure
+- **Trace**: On first retry
+
+## 📈 Allure Report Features
+
+- **Test History**: Track test results over time
+- **Detailed Logs**: Step-by-step execution details
+- **Screenshots**: Visual evidence of test execution
+- **Timeline**: Performance metrics and timing
+- **Categories**: Group tests by functionality
+- **Environment Info**: Browser and system details
+
+## 🚀 Deployment
+
+### GitHub Pages
+
+Allure reports are automatically deployed to GitHub Pages when:
+- Tests run on `main` branch
+- Report generation is successful
+- GitHub Pages is enabled in repository settings
+
+Access reports at: `https://<username>.github.io/<repository>/allure-report`
+
+## 📝 Development
+
+### Adding New Tests
+
+1. Create test functions in appropriate `.spec.js` files
+2. Use Page Object Model for element interactions
+3. Follow naming convention: `TC### - Description`
+4. Include proper assertions and error handling
+5. Test across all supported browsers
+
+### Page Object Model
+
 ```javascript
-const { test, expect } = require('../fixtures/testFixtures');
-const { KeycloakLoginPage } = require('../pages/KeycloakLoginPage');
-
-test.describe('New Test Suite', () => {
-  test('New test case', async ({ page, testData }) => {
-    const keycloakPage = new KeycloakLoginPage(page);
-    // Test implementation
-  });
-});
+// Example usage
+const keycloakPage = new KeycloakLoginPage(page);
+await keycloakPage.navigateToLogin(authUrl);
+await keycloakPage.login(username, password);
+await keycloakPage.verifySuccessfulLogin();
 ```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **Browser not installed**: Run `npm run install:browsers`
-2. **Timeout issues**: Increase timeout in `playwright.config.js`
-3. **Authentication failures**: Verify credentials and URL configuration
-4. **Element not found**: Check selectors in Page Object
+1. **Browser Installation**: Run `npm run install:browsers`
+2. **Test Failures**: Check screenshots and videos in artifacts
+3. **Allure Issues**: Ensure `allure-commandline` is installed globally
+4. **CI Failures**: Check GitHub Actions logs and artifacts
 
-### Logs and Debugging
+### Debug Mode
 
-- Enable verbose logging with `DEBUG=pw:api npm test`
-- Check test results directory for detailed logs
-- Use Playwright Inspector for debugging: `npx playwright codegen`
+```bash
+# Run with debugging
+npm run test:debug
 
-## 📚 Additional Resources
+# Or use VS Code debugging
+npm run test:ui
+```
 
-- [Playwright Documentation](https://playwright.dev/)
-- [Page Object Model Pattern](https://playwright.dev/docs/pom)
-- [Keycloak Documentation](https://www.keycloak.org/documentation)
+## 📞 Support
 
-## 🤝 Contributing
-
-1. Follow existing code patterns
-2. Add tests for new functionality
-3. Update documentation
-4. Use descriptive commit messages
+For issues and questions:
+- Check GitHub Issues
+- Review test artifacts
+- Consult Allure reports
+- Review workflow logs
 
 ## 📄 License
 
-ISC License
+ISC License - Free to use, modify, and distribute.

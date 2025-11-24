@@ -1,0 +1,898 @@
+{
+  "config": {
+    "configFile": "/Users/obo/Desktop/keycloak-automation-testing/playwright.config.js",
+    "rootDir": "/Users/obo/Desktop/keycloak-automation-testing/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/obo/Desktop/keycloak-automation-testing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/obo/Desktop/keycloak-automation-testing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/obo/Desktop/keycloak-automation-testing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/obo/Desktop/keycloak-automation-testing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/obo/Desktop/keycloak-automation-testing/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/obo/Desktop/keycloak-automation-testing/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "keycloak-login-positive.spec.js",
+      "file": "keycloak-login-positive.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Keycloak Login - Positive Flow",
+          "file": "keycloak-login-positive.spec.js",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC001 - Successful login with valid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9677,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Current URL after login: chrome-error://chromewebdata/\n"
+                        },
+                        {
+                          "text": "Login successful - redirected from Keycloak\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Keycloak login page",
+                          "duration": 2293
+                        },
+                        {
+                          "title": "Verify login form elements are visible",
+                          "duration": 13
+                        },
+                        {
+                          "title": "Enter valid username and password",
+                          "duration": 84
+                        },
+                        {
+                          "title": "Verify credentials are entered correctly",
+                          "duration": 15
+                        },
+                        {
+                          "title": "Click login button",
+                          "duration": 190
+                        },
+                        {
+                          "title": "Wait for successful login redirect",
+                          "duration": 809
+                        },
+                        {
+                          "title": "Verify successful login",
+                          "duration": 5022
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:07.352Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-c2835158877646ff0842",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "TC002 - Verify login page accessibility and elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3741,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form fields are accessible and enabled\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate and verify page load",
+                          "duration": 2846
+                        },
+                        {
+                          "title": "Verify page title and form elements",
+                          "duration": 107
+                        },
+                        {
+                          "title": "Verify form field accessibility",
+                          "duration": 58
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:07.455Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-a272f3036c5c3a491ca8",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "TC003 - Login flow with form validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5746,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to login page",
+                          "duration": 2362
+                        },
+                        {
+                          "title": "Test form clearing and refilling",
+                          "duration": 366
+                        },
+                        {
+                          "title": "Submit login form",
+                          "duration": 321
+                        },
+                        {
+                          "title": "Verify login progression",
+                          "duration": 2009
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:07.330Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-f0b6077b5b407f28ec8e",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "TC004 - Complete end-to-end authentication flow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 32018,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Login redirect timeout, continuing...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-24T16:44:07.457Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-chromium/test-failed-2.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-chromium/video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-f28084e0f5c5a332456b",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 150,
+              "column": 3
+            },
+            {
+              "title": "TC001 - Successful login with valid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10043,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Current URL after login: http://localhost:3000/#/login?&state=66f1cf3b-ee9f-41da-a5a1-8f2423bbbdb2&session_state=50cf5a2c-3bbd-49dd-a295-59d9988fd4f4&iss=https%3A%2F%2Fkeycloak-dev.logistical.one%2Frealms%2Flq&code=4de28084-e06d-4cd4-9cae-2a89f2cfb9f0.50cf5a2c-3bbd-49dd-a295-59d9988fd4f4.906382d3-0866-425c-aabe-7575ce275c0e\n"
+                        },
+                        {
+                          "text": "Login successful - redirected from Keycloak\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Keycloak login page",
+                          "duration": 1903
+                        },
+                        {
+                          "title": "Verify login form elements are visible",
+                          "duration": 44
+                        },
+                        {
+                          "title": "Enter valid username and password",
+                          "duration": 111
+                        },
+                        {
+                          "title": "Verify credentials are entered correctly",
+                          "duration": 29
+                        },
+                        {
+                          "title": "Click login button",
+                          "duration": 418
+                        },
+                        {
+                          "title": "Wait for successful login redirect",
+                          "duration": 562
+                        },
+                        {
+                          "title": "Verify successful login",
+                          "duration": 5013
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:12.500Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-8e140fe58c31dad048ac",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "TC002 - Verify login page accessibility and elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4789,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form fields are accessible and enabled\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate and verify page load",
+                          "duration": 2051
+                        },
+                        {
+                          "title": "Verify page title and form elements",
+                          "duration": 45
+                        },
+                        {
+                          "title": "Verify form field accessibility",
+                          "duration": 33
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:14.712Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-b9e71378eb30d2bfab3e",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "TC003 - Login flow with form validation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7018,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to login page",
+                          "duration": 2154
+                        },
+                        {
+                          "title": "Test form clearing and refilling",
+                          "duration": 226
+                        },
+                        {
+                          "title": "Submit login form",
+                          "duration": 367
+                        },
+                        {
+                          "title": "Verify login progression",
+                          "duration": 2005
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:18.957Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-eec1bfa90623066cc50d",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "TC004 - Complete end-to-end authentication flow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4649,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Authenticated page URL: http://localhost:3000/#/login?&state=66f1cf3b-ee9f-41da-a5a1-8f2423bbbdb2&session_state=5f94bea1-4769-4c8f-b569-6a1381c36c09&iss=https%3A%2F%2Fkeycloak-dev.logistical.one%2Frealms%2Flq&code=475153b3-1bc9-4587-b41a-21a609dea6d4.5f94bea1-4769-4c8f-b569-6a1381c36c09.906382d3-0866-425c-aabe-7575ce275c0e\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify authenticated session",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Verify page accessibility after login",
+                          "duration": 150
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:20.975Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-3c3d4ae55fd2385a9545",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 150,
+              "column": 3
+            },
+            {
+              "title": "TC001 - Successful login with valid credentials",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 30349,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js",
+                            "column": 18,
+                            "line": 58
+                          },
+                          "message": "Error: page.waitForTimeout: Target page, context or browser has been closed\n\n\u001b[0m \u001b[90m 56 |\u001b[39m     \u001b[90m// Step 7: Verify successful login\u001b[39m\n \u001b[90m 57 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Verify successful login'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m3000\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Wait for potential redirect\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m       \n \u001b[90m 60 |\u001b[39m       \u001b[36mconst\u001b[39m currentUrl \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39murl()\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Current URL after login:'\u001b[39m\u001b[33m,\u001b[39m currentUrl)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:58:18\u001b[22m\n\u001b[2m    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:57:16\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Login redirect timeout, checking current state...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Keycloak login page",
+                          "duration": 1712
+                        },
+                        {
+                          "title": "Verify login form elements are visible",
+                          "duration": 35
+                        },
+                        {
+                          "title": "Enter valid username and password",
+                          "duration": 68
+                        },
+                        {
+                          "title": "Verify credentials are entered correctly",
+                          "duration": 28
+                        },
+                        {
+                          "title": "Click login button",
+                          "duration": 478
+                        },
+                        {
+                          "title": "Wait for successful login redirect",
+                          "duration": 27275
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:25.861Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-46e37-ogin-with-valid-credentials-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-46e37-ogin-with-valid-credentials-webkit/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-46e37-ogin-with-valid-credentials-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-9e8aa3d5353b579d5130",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "TC002 - Verify login page accessibility and elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2552,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Form fields are accessible and enabled\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate and verify page load",
+                          "duration": 1552
+                        },
+                        {
+                          "title": "Verify page title and form elements",
+                          "duration": 26
+                        },
+                        {
+                          "title": "Verify form field accessibility",
+                          "duration": 26
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:27.450Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-d213f40e23846a496edd",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 78,
+              "column": 3
+            },
+            {
+              "title": "TC003 - Login flow with form validation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5155,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:146:29\n    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:137:5",
+                        "location": {
+                          "file": "/Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js",
+                          "column": 29,
+                          "line": 146
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 144 |\u001b[39m                            \u001b[33m!\u001b[39mcurrentUrl\u001b[33m.\u001b[39mincludes(\u001b[32m'keycloak-dev.logistical.one'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 145 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m       expect(hasProgressed)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js",
+                            "column": 29,
+                            "line": 146
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m 144 |\u001b[39m                            \u001b[33m!\u001b[39mcurrentUrl\u001b[33m.\u001b[39mincludes(\u001b[32m'keycloak-dev.logistical.one'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 145 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m       expect(hasProgressed)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m\u001b[0m\n\u001b[2m    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:146:29\u001b[22m\n\u001b[2m    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:137:5\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to login page",
+                          "duration": 1515
+                        },
+                        {
+                          "title": "Test form clearing and refilling",
+                          "duration": 125
+                        },
+                        {
+                          "title": "Submit login form",
+                          "duration": 465
+                        },
+                        {
+                          "title": "Verify login progression",
+                          "duration": 2005,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:146:29\n    at /Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js:137:5",
+                            "location": {
+                              "file": "/Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js",
+                              "column": 29,
+                              "line": 146
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 144 |\u001b[39m                            \u001b[33m!\u001b[39mcurrentUrl\u001b[33m.\u001b[39mincludes(\u001b[32m'keycloak-dev.logistical.one'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 145 |\u001b[39m       \n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 146 |\u001b[39m       expect(hasProgressed)\u001b[33m.\u001b[39mtoBeTruthy()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 147 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 148 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 149 |\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-11-24T16:44:29.777Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-5b692-n-flow-with-form-validation-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-5b692-n-flow-with-form-validation-webkit/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-5b692-n-flow-with-form-validation-webkit/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/obo/Desktop/keycloak-automation-testing/tests/keycloak-login-positive.spec.js",
+                        "column": 29,
+                        "line": 146
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-eec8ef3c5f023c1145a7",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "TC004 - Complete end-to-end authentication flow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 30328,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while setting up \"authenticatedPage\".\u001b[39m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Login redirect timeout, continuing...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-24T16:44:30.424Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-webkit/test-failed-2.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-webkit/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/obo/Desktop/keycloak-automation-testing/test-results/keycloak-login-positive-Ke-c25f4--to-end-authentication-flow-webkit/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "18f2d2a481eefe0dcae0-1b5bdd28ea28135977a9",
+              "file": "keycloak-login-positive.spec.js",
+              "line": 150,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-11-24T16:44:06.082Z",
+    "duration": 54856.264,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}
