@@ -1,4 +1,6 @@
-const { test as base, expect } = require('@playwright/test');
+const playwright = require('@playwright/test');
+const base = playwright.test;
+const expect = playwright.expect;
 
 // Load environment variables
 require('dotenv').config();
