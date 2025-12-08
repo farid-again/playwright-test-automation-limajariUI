@@ -17,11 +17,6 @@ jobs:
     # Using self-hosted runner on your Mac device
     runs-on: self-hosted
     
-    strategy:
-      matrix:
-        # Using chromium by default, add firefox/webkit if needed
-        browser: [chromium]
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -44,7 +39,7 @@ jobs:
         
     - name: Run Playwright tests
       run: |
-        npx playwright test --project=${{ matrix.browser }} --reporter=line,allure-playwright || true
+        npx playwright test --project=chromium --reporter=line,allure-playwright
       continue-on-error: true
       env:
         KEYCLOAK_USERNAME: ${{ secrets.KEYCLOAK_USERNAME }}
@@ -56,70 +51,33 @@ jobs:
       run: |
         allure generate allure-results --clean --output allure-report || true
         
-    - name: Upload Allure Report
+    - name: Copy report to project directory
       if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-report-${{ matrix.browser }}
-        path: allure-report/
-        retention-days: 30
+      run: |
+        # Copy report to the main project for easy access
+        cp -r allure-report ${{ github.workspace }}/../allure-report-latest || true
+        echo "📊 Allure report available at: ~/actions-runner/_work/playwright-test-automation-limajariUI/allure-report-latest"
         
-    - name: Upload Test Results
+    - name: Open Allure Report (Local)
       if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results-${{ matrix.browser }}
-        path: |
-          allure-results/
-          test-results/
-          playwright-report/
-        retention-days: 30
-        
-    - name: Upload Screenshots
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: screenshots-${{ matrix.browser }}
-        path: test-results/
-        retention-days: 7
+      run: |
+        # Display where report is located
+        echo "=============================================="
+        echo "✅ TEST COMPLETED!"
+        echo "=============================================="
+        echo "📂 Allure Report: $(pwd)/allure-report"
+        echo "📂 Playwright Report: $(pwd)/playwright-report"
+        echo "📂 Test Results: $(pwd)/test-results"
+        echo "=============================================="
+        echo ""
+        echo "To view reports locally, run:"
+        echo "  allure open $(pwd)/allure-report"
+        echo "  OR"
+        echo "  npx playwright show-report $(pwd)/playwright-report"
+        echo "=============================================="
 
-  report:
-    # Using self-hosted runner for report generation
-    runs-on: self-hosted
-    needs: test
-    if: always()
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Download all artifacts
-      uses: actions/download-artifact@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        
-    - name: Install Allure CLI
+    - name: Show Test Summary
+      if: always()
       run: |
-        npm install -g allure-commandline || true
-        mkdir -p allure-results
-        
-    - name: Combine Reports
-      run: |
-        # Copy all test results to single directory
-        mkdir -p allure-results
-        find . -name "*.json" -path "*/allure-results/*" -exec cp {} allure-results/ \; || true
-        
-    - name: Generate Combined Allure Report
-      run: |
-        allure generate allure-results --clean --output allure-report || true
-        
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./allure-report
-        destination_dir: allure-report
+        echo "📋 Test Results Summary:"
+        cat test-results/.last-run.json 2>/dev/null || echo "No test results found"
