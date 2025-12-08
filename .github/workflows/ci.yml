@@ -53,71 +53,16 @@ jobs:
       run: |
         npx allure generate allure-results --clean --output allure-report || true
         
-    - name: Generate Playwright HTML Report
-      if: always()
-      run: |
-        # Playwright report is already generated, just ensure it exists
-        ls -la playwright-report/ || true
-
-    - name: Create index page for GitHub Pages
+    - name: Prepare report for GitHub Pages
       if: always()
       run: |
         mkdir -p public-report
+        # Copy Allure report (which has its own index.html)
         cp -r allure-report/* public-report/ || true
-        
-        # Create a nice landing page
-        cat > public-report/index.html << 'EOF'
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Keycloak Test Reports</title>
-            <meta http-equiv="refresh" content="0; url=index.html">
-            <style>
-                * { margin: 0; padding: 0; box-sizing: border-box; }
-                body {
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    min-height: 100vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .container {
-                    background: rgba(255,255,255,0.95);
-                    padding: 3rem;
-                    border-radius: 20px;
-                    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-                    text-align: center;
-                    max-width: 500px;
-                }
-                h1 { color: #333; margin-bottom: 1rem; }
-                p { color: #666; margin-bottom: 2rem; }
-                .loader {
-                    border: 4px solid #f3f3f3;
-                    border-top: 4px solid #667eea;
-                    border-radius: 50%;
-                    width: 40px;
-                    height: 40px;
-                    animation: spin 1s linear infinite;
-                    margin: 0 auto;
-                }
-                @keyframes spin {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>🧪 Keycloak Test Reports</h1>
-                <p>Loading Allure Report...</p>
-                <div class="loader"></div>
-            </div>
-        </body>
-        </html>
-        EOF
+        # Add .nojekyll to prevent Jekyll processing
+        touch public-report/.nojekyll
+        echo "📂 Report files ready for deployment:"
+        ls -la public-report/
 
     - name: Deploy to GitHub Pages
       if: always() && github.ref == 'refs/heads/main'
