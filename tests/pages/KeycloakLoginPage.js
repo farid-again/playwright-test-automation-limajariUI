@@ -3,7 +3,7 @@ const { expect } = require('@playwright/test');
 class KeycloakLoginPage {
   constructor(page) {
     this.page = page;
-    
+
     // Locators for Keycloak login form elements
     this.usernameInput = page.locator('input[name="username"]');
     this.passwordInput = page.locator('input[name="password"]');
@@ -78,6 +78,37 @@ class KeycloakLoginPage {
     await expect(this.errorMessage).toBeVisible();
     if (expectedErrorMessage) {
       await expect(this.errorMessage).toContainText(expectedErrorMessage);
+    }
+  }
+
+  /**
+   * Check if an error message is displayed
+   * @returns {boolean} - True if error message is visible
+   */
+  async hasErrorMessage() {
+    try {
+      return await this.errorMessage.isVisible({ timeout: 2000 });
+    } catch (error) {
+      // Also check for other common error selectors
+      const alternativeSelectors = [
+        '.alert-error',
+        '.error-message',
+        '[role="alert"]',
+        '.kc-feedback-text'
+      ];
+
+      for (const selector of alternativeSelectors) {
+        try {
+          const element = this.page.locator(selector);
+          if (await element.isVisible({ timeout: 500 })) {
+            return true;
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+
+      return false;
     }
   }
 
