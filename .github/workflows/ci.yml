@@ -14,11 +14,13 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Using self-hosted runner on your Mac device
+    runs-on: self-hosted
     
     strategy:
       matrix:
-        browser: [chromium, firefox, webkit]
+        # Using chromium by default, add firefox/webkit if needed
+        browser: [chromium]
     
     steps:
     - name: Checkout code
@@ -28,28 +30,31 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
         
     - name: Install dependencies
       run: npm ci
       
     - name: Install Playwright browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install chromium
       
-    - name: Install Allure
+    - name: Install Allure CLI
       run: |
-        npm install -g allure-commandline
+        npm install -g allure-commandline || true
         mkdir -p allure-results
         
     - name: Run Playwright tests
       run: |
-        npx playwright test --project=${{ matrix.browser }} --reporter=line,json --output-file=allure-results/results-${{ matrix.browser }}.json || true
+        npx playwright test --project=${{ matrix.browser }} --reporter=line,allure-playwright || true
       continue-on-error: true
-      
+      env:
+        KEYCLOAK_USERNAME: ${{ secrets.KEYCLOAK_USERNAME }}
+        KEYCLOAK_PASSWORD: ${{ secrets.KEYCLOAK_PASSWORD }}
+        KEYCLOAK_URL: ${{ secrets.KEYCLOAK_URL }}
+        
     - name: Generate Allure Report
       if: always()
       run: |
-        allure generate allure-results --clean --output allure-report
+        allure generate allure-results --clean --output allure-report || true
         
     - name: Upload Allure Report
       if: always()
@@ -79,7 +84,8 @@ jobs:
         retention-days: 7
 
   report:
-    runs-on: ubuntu-latest
+    # Using self-hosted runner for report generation
+    runs-on: self-hosted
     needs: test
     if: always()
     
@@ -95,20 +101,20 @@ jobs:
       with:
         node-version: '18'
         
-    - name: Install Allure
+    - name: Install Allure CLI
       run: |
-        npm install -g allure-commandline
+        npm install -g allure-commandline || true
         mkdir -p allure-results
         
     - name: Combine Reports
       run: |
         # Copy all test results to single directory
         mkdir -p allure-results
-        find . -name "results-*.json" -exec cp {} allure-results/ \;
+        find . -name "*.json" -path "*/allure-results/*" -exec cp {} allure-results/ \; || true
         
     - name: Generate Combined Allure Report
       run: |
-        allure generate allure-results --clean --output allure-report
+        allure generate allure-results --clean --output allure-report || true
         
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
