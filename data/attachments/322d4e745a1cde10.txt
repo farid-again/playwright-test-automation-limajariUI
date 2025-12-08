@@ -1,0 +1,3 @@
+⚠️ Login took 5211ms (exceeded 5000ms)
+📊 Login response time: 5212ms
+📊 Maximum allowed: 5000ms

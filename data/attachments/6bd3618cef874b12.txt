@@ -1,0 +1,7 @@
+✅ Successfully logged in
+⚠️ No logout button found, trying Keycloak logout URL...
+📍 Navigated to Keycloak logout URL
+📍 URL after logout: https://keycloak-dev.logistical.one/realms/lq/protocol/openid-connect/logout
+🍪 Session cookies after logout: 4
+📸 Screenshot saved: after-logout.png
+✅ Logout verification completed

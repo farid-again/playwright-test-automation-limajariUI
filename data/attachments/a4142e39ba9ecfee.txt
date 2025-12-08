@@ -1,0 +1,2 @@
+📍 Current URL after login: chrome-error://chromewebdata/
+✅ Successfully redirected from Keycloak
